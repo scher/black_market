@@ -23,7 +23,7 @@ public class Runner {
         BufferedReader reader =
                 new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.print("Input SKU separated by commas: ");
+        System.out.print("Enter SKU separated by commas: ");
         String input = reader.readLine();
         String[] splited = input.split(",");
         for (String sku : splited) {
