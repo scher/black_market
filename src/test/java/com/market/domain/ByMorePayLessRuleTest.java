@@ -17,7 +17,7 @@ class ByMorePayLessRuleTest {
         Item item1 = new Item(SKU, "dummy", 100);
         Repository repository = mock(Repository.class);
         when(repository.getItem(SKU)).thenReturn(item1);
-        ByMorePayLessRule classToTest = new ByMorePayLessRule(SKU, 3, 1, repository);
+        ByMorePayLessRule classToTest = new ByMorePayLessRule(SKU, repository, 3, 1);
         Cart cartMock = mock(Cart.class);
         ArrayList<Item> items = new ArrayList<>();
         items.add(item1);
@@ -37,7 +37,7 @@ class ByMorePayLessRuleTest {
     void ruleApplicableFalse() {
         Item item1 = new Item(SKU, "dummy", 100);
         Repository repository = mock(Repository.class);
-        ByMorePayLessRule classToTest = new ByMorePayLessRule(SKU, 5, 3, repository);
+        ByMorePayLessRule classToTest = new ByMorePayLessRule(SKU, repository, 5, 3);
         Cart cartMock = mock(Cart.class);
         ArrayList<Item> items = new ArrayList<>();
         items.add(item1);
@@ -50,7 +50,7 @@ class ByMorePayLessRuleTest {
     void ruleApplicableTrue() {
         Item item1 = new Item(SKU, "dummy", 100);
         Repository repository = mock(Repository.class);
-        ByMorePayLessRule classToTest = new ByMorePayLessRule(SKU, 2, 1, repository);
+        ByMorePayLessRule classToTest = new ByMorePayLessRule(SKU, repository, 2, 1);
         Cart cartMock = mock(Cart.class);
         ArrayList<Item> items = new ArrayList<>();
         items.add(item1);
@@ -64,7 +64,7 @@ class ByMorePayLessRuleTest {
     void ruleApplicableTrueWhenMore() {
         Item item1 = new Item(SKU, "dummy", 100);
         Repository repository = mock(Repository.class);
-        ByMorePayLessRule classToTest = new ByMorePayLessRule(SKU, 2, 1, repository);
+        ByMorePayLessRule classToTest = new ByMorePayLessRule(SKU, repository, 2, 1);
         Cart cartMock = mock(Cart.class);
         ArrayList<Item> items = new ArrayList<>();
         items.add(item1);

@@ -6,7 +6,7 @@ public class BulkSaleRule extends AbstractPricingRule {
     private int numOfItems;
     private int salePrice;
 
-    public BulkSaleRule(String sku, int numOfItems, int salePrice, Repository repository) {
+    public BulkSaleRule(String sku, Repository repository, int numOfItems, int salePrice) {
         super(sku, repository);
         this.numOfItems = numOfItems;
         this.salePrice = salePrice;

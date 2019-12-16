@@ -6,7 +6,7 @@ public class ByMorePayLessRule extends AbstractPricingRule {
     private int itemsToBy;
     private int itemsToPay;
 
-    public ByMorePayLessRule(String sku, int itemsToBy, int itemsToPay, Repository repository) {
+    public ByMorePayLessRule(String sku, Repository repository, int itemsToBy, int itemsToPay) {
         super(sku, repository);
         this.itemsToBy = itemsToBy;
         this.itemsToPay = itemsToPay;

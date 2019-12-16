@@ -8,56 +8,53 @@ import java.util.ArrayList;
 
 import static org.mockito.Mockito.*;
 
-class BulkSaleRuleTest {
-
+class FreeBundleRuleTest {
     public static final String SKU = "sku";
+    public static final String SKU_TO_BUNDLE = "skuToBundle";
 
     @Test
     void applyRule() {
         Item item1 = new Item(SKU, "dummy", 100);
+        Item itemToBundle = new Item(SKU_TO_BUNDLE, "another one", 50);
         Repository repository = mock(Repository.class);
-        when(repository.getItem(SKU)).thenReturn(item1);
-        BulkSaleRule classToTest = new BulkSaleRule(SKU, repository, 2, 90);
+        when(repository.getItem(SKU_TO_BUNDLE)).thenReturn(itemToBundle);
+        FreeBundleRule classToTest = new FreeBundleRule(SKU, repository, SKU_TO_BUNDLE);
         Cart cartMock = mock(Cart.class);
         ArrayList<Item> items = new ArrayList<>();
         items.add(item1);
-        items.add(item1);
-        items.add(item1);
+        items.add(itemToBundle);
         when(cartMock.getItems()).thenReturn(items);
-        when(cartMock.getTotal()).thenReturn(300.00);
+        when(cartMock.getTotal()).thenReturn(150.00);
 
-        boolean applicable = classToTest.isApplicable(cartMock);
-        Assertions.assertTrue(applicable);
         classToTest.applyRule(cartMock);
-
-        verify(cartMock).setTotal(270);
-    }
-
-    @Test
-    void applicableFalse() {
-        Item item1 = new Item(SKU, "dummy", 100);
-        Repository repository = mock(Repository.class);
-        BulkSaleRule classToTest = new BulkSaleRule(SKU, repository, 5, 50);
-        Cart cartMock = mock(Cart.class);
-        ArrayList<Item> items = new ArrayList<>();
-        items.add(item1);
-        when(cartMock.getItems()).thenReturn(items);
-        boolean applicable = classToTest.isApplicable(cartMock);
-        Assertions.assertFalse(applicable);
+        verify(cartMock).setTotal(100);
     }
 
     @Test
     void applicableTrue() {
         Item item1 = new Item(SKU, "dummy", 100);
+        Item itemToBundle = new Item(SKU_TO_BUNDLE, "another one", 50);
         Repository repository = mock(Repository.class);
-        BulkSaleRule classToTest = new BulkSaleRule(SKU, repository, 1, 50);
+        FreeBundleRule classToTest = new FreeBundleRule(SKU, repository, SKU_TO_BUNDLE);
         Cart cartMock = mock(Cart.class);
         ArrayList<Item> items = new ArrayList<>();
         items.add(item1);
-        items.add(item1);
-        items.add(item1);
+        items.add(itemToBundle);
         when(cartMock.getItems()).thenReturn(items);
         boolean applicable = classToTest.isApplicable(cartMock);
         Assertions.assertTrue(applicable);
+    }
+
+    @Test
+    void applicableFalse() {
+        Item itemToBundle = new Item(SKU_TO_BUNDLE, "another one", 50);
+        Repository repository = mock(Repository.class);
+        FreeBundleRule classToTest = new FreeBundleRule(SKU, repository, SKU_TO_BUNDLE);
+        Cart cartMock = mock(Cart.class);
+        ArrayList<Item> items = new ArrayList<>();
+        items.add(itemToBundle);
+        when(cartMock.getItems()).thenReturn(items);
+        boolean applicable = classToTest.isApplicable(cartMock);
+        Assertions.assertFalse(applicable);
     }
 }
