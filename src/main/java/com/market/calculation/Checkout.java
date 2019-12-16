@@ -33,7 +33,7 @@ public class Checkout {
     }
 
     private double calculateTotalWithoutDeals() {
-        int sum = 0;
+        double sum = 0;
         for (String sku : cart.getItems()) {
             sum += repository.getItem(sku).getPrice();
         }

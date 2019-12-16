@@ -4,9 +4,9 @@ import com.market.repository.Repository;
 
 public class BulkSaleRule extends AbstractPricingRule {
     private int numOfItems;
-    private int salePrice;
+    private double salePrice;
 
-    public BulkSaleRule(String sku, Repository repository, int numOfItems, int salePrice) {
+    public BulkSaleRule(String sku, Repository repository, int numOfItems, double salePrice) {
         super(sku, repository);
         this.numOfItems = numOfItems;
         this.salePrice = salePrice;

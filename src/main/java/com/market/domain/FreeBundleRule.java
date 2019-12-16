@@ -13,7 +13,11 @@ public class FreeBundleRule extends AbstractPricingRule {
     @Override
     protected double calculateDiscount(Cart cart) {
         Item item = repository.getItem(skuToBundle);
-        return item.getPrice();
+        if (cart.getItems().stream().anyMatch(i -> i.equals(skuToBundle))) {
+            return item.getPrice();
+        } else {
+            return 0;
+        }
     }
 
     @Override
