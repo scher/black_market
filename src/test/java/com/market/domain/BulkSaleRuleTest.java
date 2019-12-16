@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import static org.mockito.Mockito.*;
 
-class ByMorePayLessRuleTest {
+class BulkSaleRuleTest {
 
     public static final String SKU = "sku";
 
@@ -17,7 +17,7 @@ class ByMorePayLessRuleTest {
         Item item1 = new Item(SKU, "dummy", 100);
         Repository repository = mock(Repository.class);
         when(repository.getItem(SKU)).thenReturn(item1);
-        ByMorePayLessRule classToTest = new ByMorePayLessRule(SKU, 3, 1, repository);
+        BulkSaleRule classToTest = new BulkSaleRule(SKU, 2, 90, repository);
         Cart cartMock = mock(Cart.class);
         ArrayList<Item> items = new ArrayList<>();
         items.add(item1);
@@ -30,14 +30,14 @@ class ByMorePayLessRuleTest {
         Assertions.assertTrue(applicable);
         classToTest.applyRule(cartMock);
 
-        verify(cartMock).setTotal(100);
+        verify(cartMock).setTotal(270);
     }
 
     @Test
-    void ruleApplicableFalse() {
+    void applicableFalse() {
         Item item1 = new Item(SKU, "dummy", 100);
         Repository repository = mock(Repository.class);
-        ByMorePayLessRule classToTest = new ByMorePayLessRule(SKU, 5, 3, repository);
+        BulkSaleRule classToTest = new BulkSaleRule(SKU, 5, 50, repository);
         Cart cartMock = mock(Cart.class);
         ArrayList<Item> items = new ArrayList<>();
         items.add(item1);
@@ -47,27 +47,12 @@ class ByMorePayLessRuleTest {
     }
 
     @Test
-    void ruleApplicableTrue() {
+    void applicableTrue() {
         Item item1 = new Item(SKU, "dummy", 100);
         Repository repository = mock(Repository.class);
-        ByMorePayLessRule classToTest = new ByMorePayLessRule(SKU, 2, 1, repository);
+        BulkSaleRule classToTest = new BulkSaleRule(SKU, 1, 50, repository);
         Cart cartMock = mock(Cart.class);
         ArrayList<Item> items = new ArrayList<>();
-        items.add(item1);
-        items.add(item1);
-        when(cartMock.getItems()).thenReturn(items);
-        boolean applicable = classToTest.isApplicable(cartMock);
-        Assertions.assertTrue(applicable);
-    }
-
-    @Test
-    void ruleApplicableTrueWhenMore() {
-        Item item1 = new Item(SKU, "dummy", 100);
-        Repository repository = mock(Repository.class);
-        ByMorePayLessRule classToTest = new ByMorePayLessRule(SKU, 2, 1, repository);
-        Cart cartMock = mock(Cart.class);
-        ArrayList<Item> items = new ArrayList<>();
-        items.add(item1);
         items.add(item1);
         items.add(item1);
         items.add(item1);
