@@ -19,9 +19,7 @@ public class Cart {
         this.total = total;
     }
 
-    void addItem(String item) {
+    public void addItem(String item) {
         items.add(item);
     }
-
-
 }
