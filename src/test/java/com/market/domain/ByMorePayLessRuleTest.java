@@ -19,10 +19,10 @@ class ByMorePayLessRuleTest {
         when(repository.getItem(SKU)).thenReturn(item1);
         ByMorePayLessRule classToTest = new ByMorePayLessRule(SKU, repository, 3, 1);
         Cart cartMock = mock(Cart.class);
-        ArrayList<Item> items = new ArrayList<>();
-        items.add(item1);
-        items.add(item1);
-        items.add(item1);
+        ArrayList<String> items = new ArrayList<>();
+        items.add(SKU);
+        items.add(SKU);
+        items.add(SKU);
         when(cartMock.getItems()).thenReturn(items);
         when(cartMock.getTotal()).thenReturn(300.00);
 
@@ -35,12 +35,11 @@ class ByMorePayLessRuleTest {
 
     @Test
     void ruleApplicableFalse() {
-        Item item1 = new Item(SKU, "dummy", 100);
         Repository repository = mock(Repository.class);
         ByMorePayLessRule classToTest = new ByMorePayLessRule(SKU, repository, 5, 3);
         Cart cartMock = mock(Cart.class);
-        ArrayList<Item> items = new ArrayList<>();
-        items.add(item1);
+        ArrayList<String> items = new ArrayList<>();
+        items.add(SKU);
         when(cartMock.getItems()).thenReturn(items);
         boolean applicable = classToTest.isApplicable(cartMock);
         Assertions.assertFalse(applicable);
@@ -48,13 +47,12 @@ class ByMorePayLessRuleTest {
 
     @Test
     void ruleApplicableTrue() {
-        Item item1 = new Item(SKU, "dummy", 100);
         Repository repository = mock(Repository.class);
         ByMorePayLessRule classToTest = new ByMorePayLessRule(SKU, repository, 2, 1);
         Cart cartMock = mock(Cart.class);
-        ArrayList<Item> items = new ArrayList<>();
-        items.add(item1);
-        items.add(item1);
+        ArrayList<String> items = new ArrayList<>();
+        items.add(SKU);
+        items.add(SKU);
         when(cartMock.getItems()).thenReturn(items);
         boolean applicable = classToTest.isApplicable(cartMock);
         Assertions.assertTrue(applicable);
@@ -62,15 +60,14 @@ class ByMorePayLessRuleTest {
 
     @Test
     void ruleApplicableTrueWhenMore() {
-        Item item1 = new Item(SKU, "dummy", 100);
         Repository repository = mock(Repository.class);
         ByMorePayLessRule classToTest = new ByMorePayLessRule(SKU, repository, 2, 1);
         Cart cartMock = mock(Cart.class);
-        ArrayList<Item> items = new ArrayList<>();
-        items.add(item1);
-        items.add(item1);
-        items.add(item1);
-        items.add(item1);
+        ArrayList<String> items = new ArrayList<>();
+        items.add(SKU);
+        items.add(SKU);
+        items.add(SKU);
+        items.add(SKU);
         when(cartMock.getItems()).thenReturn(items);
         boolean applicable = classToTest.isApplicable(cartMock);
         Assertions.assertTrue(applicable);

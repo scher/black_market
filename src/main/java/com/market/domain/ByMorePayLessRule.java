@@ -21,7 +21,7 @@ public class ByMorePayLessRule extends AbstractPricingRule {
 
     @Override
     public boolean isApplicable(Cart cart) {
-        long skuItemsInCart = cart.getItems().stream().filter(item -> item.getSku().equals(sku)).count();
+        long skuItemsInCart = cart.getItems().stream().filter(item -> item.equals(sku)).count();
         return skuItemsInCart >= itemsToBy;
     }
 }

@@ -18,6 +18,6 @@ public class FreeBundleRule extends AbstractPricingRule {
 
     @Override
     public boolean isApplicable(Cart cart) {
-        return cart.getItems().stream().anyMatch(item -> item.getSku().equals(sku));
+        return cart.getItems().stream().anyMatch(item -> item.equals(sku));
     }
 }

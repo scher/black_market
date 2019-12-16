@@ -14,15 +14,14 @@ class FreeBundleRuleTest {
 
     @Test
     void applyRule() {
-        Item item1 = new Item(SKU, "dummy", 100);
         Item itemToBundle = new Item(SKU_TO_BUNDLE, "another one", 50);
         Repository repository = mock(Repository.class);
         when(repository.getItem(SKU_TO_BUNDLE)).thenReturn(itemToBundle);
         FreeBundleRule classToTest = new FreeBundleRule(SKU, repository, SKU_TO_BUNDLE);
         Cart cartMock = mock(Cart.class);
-        ArrayList<Item> items = new ArrayList<>();
-        items.add(item1);
-        items.add(itemToBundle);
+        ArrayList<String> items = new ArrayList<>();
+        items.add(SKU);
+        items.add(SKU_TO_BUNDLE);
         when(cartMock.getItems()).thenReturn(items);
         when(cartMock.getTotal()).thenReturn(150.00);
 
@@ -32,14 +31,12 @@ class FreeBundleRuleTest {
 
     @Test
     void applicableTrue() {
-        Item item1 = new Item(SKU, "dummy", 100);
-        Item itemToBundle = new Item(SKU_TO_BUNDLE, "another one", 50);
         Repository repository = mock(Repository.class);
         FreeBundleRule classToTest = new FreeBundleRule(SKU, repository, SKU_TO_BUNDLE);
         Cart cartMock = mock(Cart.class);
-        ArrayList<Item> items = new ArrayList<>();
-        items.add(item1);
-        items.add(itemToBundle);
+        ArrayList<String> items = new ArrayList<>();
+        items.add(SKU);
+        items.add(SKU_TO_BUNDLE);
         when(cartMock.getItems()).thenReturn(items);
         boolean applicable = classToTest.isApplicable(cartMock);
         Assertions.assertTrue(applicable);
@@ -47,12 +44,11 @@ class FreeBundleRuleTest {
 
     @Test
     void applicableFalse() {
-        Item itemToBundle = new Item(SKU_TO_BUNDLE, "another one", 50);
         Repository repository = mock(Repository.class);
         FreeBundleRule classToTest = new FreeBundleRule(SKU, repository, SKU_TO_BUNDLE);
         Cart cartMock = mock(Cart.class);
-        ArrayList<Item> items = new ArrayList<>();
-        items.add(itemToBundle);
+        ArrayList<String> items = new ArrayList<>();
+        items.add(SKU_TO_BUNDLE);
         when(cartMock.getItems()).thenReturn(items);
         boolean applicable = classToTest.isApplicable(cartMock);
         Assertions.assertFalse(applicable);

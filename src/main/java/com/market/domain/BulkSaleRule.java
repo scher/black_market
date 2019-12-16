@@ -14,14 +14,14 @@ public class BulkSaleRule extends AbstractPricingRule {
 
     @Override
     protected double calculateDiscount(Cart cart) {
-        long skuItemsInCart = cart.getItems().stream().filter(item -> item.getSku().equals(sku)).count();
+        long skuItemsInCart = cart.getItems().stream().filter(item -> item.equals(sku)).count();
         Item item = repository.getItem(sku);
         return skuItemsInCart * item.getPrice() - skuItemsInCart * salePrice;
     }
 
     @Override
     public boolean isApplicable(Cart cart) {
-        long skuItemsInCart = cart.getItems().stream().filter(item -> item.getSku().equals(sku)).count();
+        long skuItemsInCart = cart.getItems().stream().filter(item -> item.equals(sku)).count();
         return skuItemsInCart > numOfItems;
     }
 }

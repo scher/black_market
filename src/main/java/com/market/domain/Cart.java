@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
-    private List<Item> items = new ArrayList<>();
+    private List<String> items = new ArrayList<>();
     private double total;
 
-    public List<Item> getItems() {
+    public List<String> getItems() {
         return items;
     }
 
@@ -19,7 +19,7 @@ public class Cart {
         this.total = total;
     }
 
-    void addItem(Item item) {
+    void addItem(String item) {
         items.add(item);
     }
 
