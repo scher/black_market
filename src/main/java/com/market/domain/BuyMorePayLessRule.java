@@ -2,11 +2,11 @@ package com.market.domain;
 
 import com.market.repository.Repository;
 
-public class ByMorePayLessRule extends AbstractPricingRule {
+public class BuyMorePayLessRule extends AbstractPricingRule {
     private int itemsToBy;
     private int itemsToPay;
 
-    public ByMorePayLessRule(String sku, Repository repository, int itemsToBy, int itemsToPay) {
+    public BuyMorePayLessRule(String sku, Repository repository, int itemsToBy, int itemsToPay) {
         super(sku, repository);
         this.itemsToBy = itemsToBy;
         this.itemsToPay = itemsToPay;

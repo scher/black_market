@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import static org.mockito.Mockito.*;
 
-class ByMorePayLessRuleTest {
+class BuyMorePayLessRuleTest {
 
     public static final String SKU = "sku";
 
@@ -17,7 +17,7 @@ class ByMorePayLessRuleTest {
         Item item1 = new Item(SKU, "dummy", 100);
         Repository repository = mock(Repository.class);
         when(repository.getItem(SKU)).thenReturn(item1);
-        ByMorePayLessRule classToTest = new ByMorePayLessRule(SKU, repository, 3, 1);
+        BuyMorePayLessRule classToTest = new BuyMorePayLessRule(SKU, repository, 3, 1);
         Cart cartMock = mock(Cart.class);
         ArrayList<String> items = new ArrayList<>();
         items.add(SKU);
@@ -36,7 +36,7 @@ class ByMorePayLessRuleTest {
     @Test
     void ruleApplicableFalse() {
         Repository repository = mock(Repository.class);
-        ByMorePayLessRule classToTest = new ByMorePayLessRule(SKU, repository, 5, 3);
+        BuyMorePayLessRule classToTest = new BuyMorePayLessRule(SKU, repository, 5, 3);
         Cart cartMock = mock(Cart.class);
         ArrayList<String> items = new ArrayList<>();
         items.add(SKU);
@@ -48,7 +48,7 @@ class ByMorePayLessRuleTest {
     @Test
     void ruleApplicableTrue() {
         Repository repository = mock(Repository.class);
-        ByMorePayLessRule classToTest = new ByMorePayLessRule(SKU, repository, 2, 1);
+        BuyMorePayLessRule classToTest = new BuyMorePayLessRule(SKU, repository, 2, 1);
         Cart cartMock = mock(Cart.class);
         ArrayList<String> items = new ArrayList<>();
         items.add(SKU);
@@ -61,7 +61,7 @@ class ByMorePayLessRuleTest {
     @Test
     void ruleApplicableTrueWhenMore() {
         Repository repository = mock(Repository.class);
-        ByMorePayLessRule classToTest = new ByMorePayLessRule(SKU, repository, 2, 1);
+        BuyMorePayLessRule classToTest = new BuyMorePayLessRule(SKU, repository, 2, 1);
         Cart cartMock = mock(Cart.class);
         ArrayList<String> items = new ArrayList<>();
         items.add(SKU);

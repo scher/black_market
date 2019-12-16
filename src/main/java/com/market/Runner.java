@@ -2,7 +2,7 @@ package com.market;
 
 import com.market.calculation.Checkout;
 import com.market.domain.BulkSaleRule;
-import com.market.domain.ByMorePayLessRule;
+import com.market.domain.BuyMorePayLessRule;
 import com.market.domain.FreeBundleRule;
 import com.market.domain.PricingRule;
 import com.market.repository.InMemoryRepository;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Runner {
     public static void main(String[] args) throws IOException {
         ArrayList<PricingRule> pricingRules = new ArrayList<>();
-        pricingRules.add(new ByMorePayLessRule("atv", InMemoryRepository.getInstance(), 3, 2));
+        pricingRules.add(new BuyMorePayLessRule("atv", InMemoryRepository.getInstance(), 3, 2));
         pricingRules.add(new BulkSaleRule("ipd", InMemoryRepository.getInstance(), 4, 499.99));
         pricingRules.add(new FreeBundleRule("mbp", InMemoryRepository.getInstance(), "vga"));
         Checkout checkout = new Checkout(pricingRules);
