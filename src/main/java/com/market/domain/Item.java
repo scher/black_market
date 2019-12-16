@@ -3,9 +3,9 @@ package com.market.domain;
 import java.util.Objects;
 
 public class Item {
-    String sku;
-    String name;
-    double price;
+    private String sku;
+    private String name;
+    private double price;
 
     public Item(String sku, String name, double price) {
         this.sku = sku;

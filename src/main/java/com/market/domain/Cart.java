@@ -1,10 +1,15 @@
 package com.market.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
-    List<Item> items;
-    double total;
+    private List<Item> items = new ArrayList<>();
+    private double total;
+
+    public List<Item> getItems() {
+        return items;
+    }
 
     public double getTotal() {
         return total;
