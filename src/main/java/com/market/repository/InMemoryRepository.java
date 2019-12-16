@@ -3,9 +3,8 @@ package com.market.repository;
 import com.market.domain.Item;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,13 +18,9 @@ public class InMemoryRepository implements Repository {
     }
 
     private InMemoryRepository() {
-        File file = new File(
-                getClass().getClassLoader().getResource(REPOSITORY_FILE_NAME).getFile()
-        );
+        InputStreamReader inputStreamReader = new InputStreamReader(getClass().getClassLoader().getResourceAsStream(REPOSITORY_FILE_NAME));
         try {
-            try (FileReader reader = new FileReader(file);
-                 BufferedReader br = new BufferedReader(reader)) {
-
+            try (BufferedReader br = new BufferedReader(inputStreamReader)) {
                 String line;
                 while ((line = br.readLine()) != null) {
                     String[] splited = line.split(";");
